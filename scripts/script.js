@@ -2336,8 +2336,11 @@ try{document.getElementById("settingsprodiv").remove();}catch{}
 //try{document.querySelector("#ytProDownloaderDiv").remove();}catch{}
 if(window.location.hash == "#download"){
 ytproDownVid();
-}else if(window.location.hash == "#settings"){
-ytproSettings();
+else if(window.location.hash == "#settings"){
+    // Hide YT PRO Settings
+    try {
+        document.getElementById("settingsprodiv")?.remove();
+    } catch(e) {}
 }
 else if(window.location.hash == "#hearts"){
 showHearts();
