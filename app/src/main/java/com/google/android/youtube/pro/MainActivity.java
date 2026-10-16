@@ -44,25 +44,77 @@ public class MainActivity extends Activity {
     private OnBackInvokedCallback backCallback;
     public BinaryStreamManager streamManager;
 
-    /**
+/**
      * Dialog sambutan CukYT KRIAN.
-     * Dipanggil sekali setiap MainActivity dibuat.
+     * Tampilan sudah dipercantik dengan UI kustom (Rounded, Center, HTML Highlight).
      */
     private void showCukYTDialog() {
+        // 1. Membuat Container Layout utama
+        android.widget.LinearLayout layout = new android.widget.LinearLayout(this);
+        layout.setOrientation(android.widget.LinearLayout.VERTICAL);
+        layout.setPadding(60, 70, 60, 30);
+        layout.setGravity(android.view.Gravity.CENTER);
+
+        // 2. Ikon Sambutan (Opsional, bikin makin cakep)
+        android.widget.TextView iconView = new android.widget.TextView(this);
+        iconView.setText("🚀");
+        iconView.setTextSize(42);
+        iconView.setGravity(android.view.Gravity.CENTER);
+        iconView.setPadding(0, 0, 0, 15);
+
+        // 3. Judul Aplikasi
+        android.widget.TextView titleView = new android.widget.TextView(this);
+        titleView.setText("CUKYT KRIAN");
+        titleView.setTextSize(22);
+        titleView.setTypeface(null, android.graphics.Typeface.BOLD);
+        titleView.setTextColor(android.graphics.Color.parseColor("#FF0000")); // Merah YouTube
+        titleView.setGravity(android.view.Gravity.CENTER);
+        titleView.setPadding(0, 0, 0, 25);
+
+        // 4. Pesan dengan format HTML (Biar bisa bedain warna teks)
+        android.widget.TextView msgView = new android.widget.TextView(this);
+        String htmlText = "Selamat datang di <b>CukYT!</b><br><br>" +
+                          "Aplikasi ini merupakan versi modifikasi eksklusif dari proyek gabut oleh <br>" +
+                          "<font color='#00E676'><b>Andika Bagus K GANTENG!</b></font><br><br>" +
+                          "Terima kasih telah menggunakan aplikasi ini.";
+        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            msgView.setText(android.text.Html.fromHtml(htmlText, android.text.Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            msgView.setText(android.text.Html.fromHtml(htmlText));
+        }
+        msgView.setTextSize(15);
+        msgView.setTextColor(android.graphics.Color.parseColor("#E0E0E0")); // Abu-abu terang biar enak dibaca di dark mode
+        msgView.setGravity(android.view.Gravity.CENTER);
+        msgView.setLineSpacing(0, 1.3f);
+
+        // Masukkan semua elemen ke dalam Layout
+        layout.addView(iconView);
+        layout.addView(titleView);
+        layout.addView(msgView);
+
+        // 5. Membangun & Menampilkan Dialog
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("CUKYT KRIAN")
-                .setMessage(
-                        "Selamat datang di CukYT!\n\n" +
-                        "Aplikasi ini merupakan versi modifikasi " +
-                        "dari proyek gabut oleh Andika Bagus K GANTENG!.\n\n" +
-                        "Terima kasih telah menggunakan aplikasi ini."
-                )
+                .setView(layout)
                 .setPositiveButton("MENGERTI", (d, which) -> d.dismiss())
                 .create();
 
+        // 6. Styling Background & Tombol setelah dialog dibuat
         dialog.setOnShowListener(d -> {
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                    .setTextColor(Color.rgb(230, 35, 55));
+            // Membuat background pop-up melengkung (Rounded)
+            android.graphics.drawable.GradientDrawable shape = new android.graphics.drawable.GradientDrawable();
+            shape.setShape(android.graphics.drawable.GradientDrawable.RECTANGLE);
+            shape.setCornerRadius(50f); // Radius kelengkungan
+            shape.setColor(android.graphics.Color.parseColor("#212121")); // Warna dark grey material
+
+            // Terapkan background ke Window dialog
+            dialog.getWindow().setBackgroundDrawable(shape);
+
+            // Styling tombol MENGERTI
+            android.widget.Button posBtn = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            posBtn.setTextColor(android.graphics.Color.parseColor("#FF0000")); // Teks tombol jadi merah
+            posBtn.setTypeface(null, android.graphics.Typeface.BOLD);
+            posBtn.setAllCaps(true);
         });
 
         dialog.show();

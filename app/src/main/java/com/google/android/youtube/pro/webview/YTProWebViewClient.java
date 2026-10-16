@@ -186,12 +186,9 @@ public class YTProWebViewClient extends WebViewClient {
 	@Override
 	public void onPageFinished(WebView view, String url) {
 		web.evaluateJavascript("if (window.trustedTypes && window.trustedTypes.createPolicy && !window.trustedTypes.defaultPolicy) {window.trustedTypes.createPolicy('default', {createHTML: (string) => string,createScriptURL: string => string, createScript: string => string, });}", null);
-		web.evaluateJavascript("(function () { var script = document.createElement('script'); script.src='https://youtube.com/ytpro_cdn/gh/kadalkrian04/CukYT-main@main/scripts/script.js'; document.body.appendChild(script); })();", null);
-		web.evaluateJavascript("(function () { var script = document.createElement('script'); script.src='https://youtube.com/ytpro_cdn/gh/kadalkrian04/CukYT-main@main/scripts/bgplay.js'; document.body.appendChild(script); })();", null);
-		web.evaluateJavascript("(function () { var script = document.createElement('script'); script.type='module'; script.src='https://youtube.com/ytpro_cdn/gh/kadalkrian04/CukYT-main@main/scripts/innertube.js'; document.body.appendChild(script); })();", null);
-		
-		
-		
+		web.evaluateJavascript("(function () { var script = document.createElement('script'); script.src='https://youtube.com/ytpro_cdn/gh/kadalkrian04/CukYT-Krian@main/scripts/script.js'; document.body.appendChild(script); })();", null);
+		web.evaluateJavascript("(function () { var script = document.createElement('script'); script.src='https://youtube.com/ytpro_cdn/gh/kadalkrian04/CukYT-Krian@main/scripts/bgplay.js'; document.body.appendChild(script); })();", null);
+		web.evaluateJavascript("(function () { var script = document.createElement('script'); script.type='module'; script.src='https://youtube.com/ytpro_cdn/gh/kadalkrian04/CukYT-Krian@main/scripts/innertube.js'; document.body.appendChild(script); })();", null);
 		
 		if (!url.contains("youtube.com/watch") && !url.contains("youtube.com/shorts") && activity.isPlaying) {
 			activity.isPlaying = false;
