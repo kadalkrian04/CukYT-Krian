@@ -2329,24 +2329,20 @@ return originalRequestFullscreen.apply(this, args);
 
 /*Check The Hash Change*/
 window.onhashchange=()=>{
-try{document.getElementById("outerdownytprodiv").remove();}catch{}
-try{document.getElementById("outerheartsdiv").remove();}catch{}
-try{document.getElementById("settingsprodiv").remove();}catch{}
-//try{document.querySelector("#ytproDownloadIndicator").remove();}catch{}
-//try{document.querySelector("#ytProDownloaderDiv").remove();}catch{}
-if(window.location.hash == "#download"){
-ytproDownVid();
-}
-else if(window.location.hash == "#settings"){
-    // Hide YT PRO Settings
-    try {
-        document.getElementById("settingsprodiv")?.remove();
-    } catch(e) {}
-}
-else if(window.location.hash == "#hearts"){
-showHearts();
-}
+    try{document.getElementById("outerdownytprodiv").remove();}catch{}
+    try{document.getElementById("outerheartsdiv").remove();}catch{}
+    try{document.getElementById("settingsprodiv").remove();}catch{}
 
+    if(window.location.hash == "#download"){
+        ytproDownVid();
+    }
+    else if(window.location.hash == "#settings"){
+        // Panggil fungsi untuk menampilkan menu Settings
+        ytproSettings();
+    }
+    else if(window.location.hash == "#hearts"){
+        showHearts();
+    }
 }
 
 
