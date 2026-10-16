@@ -43,7 +43,7 @@ public class YTProWebViewClient extends WebViewClient {
     url.contains("/signin") ||              
     url.contains("SetSID")) {             
         return super.shouldInterceptRequest(view, request);
-}
+        }
 
 		
 		if (request.isForMainFrame() && (url.contains("m.youtube.com") || url.contains("www.youtube.com"))) {
@@ -133,7 +133,7 @@ public class YTProWebViewClient extends WebViewClient {
 			String modifiedUrl = url;
 			if (url.contains("youtube.com/ytpro_cdn/esm")) modifiedUrl = url.replace("youtube.com/ytpro_cdn/esm", "esm.sh");
 			else if (url.contains("youtube.com/ytpro_cdn/npm")) modifiedUrl = url.replace("youtube.com/ytpro_cdn", "cdn.jsdelivr.net");
-			else if (url.contains("youtube.com/ytpro_cdn/raw")) modifiedUrl = url.replace("https://youtube.com/ytpro_cdn/raw", "https://raw.githubusercontent.com");
+			else if (url.contains("youtube.com/ytpro_cdn/raw")) modifiedUrl = url.replace("youtube.com/ytpro_cdn/raw", "raw.githubusercontent.com");
 			
 			try {
 				URL newUrl = new URL(modifiedUrl);
@@ -145,7 +145,7 @@ public class YTProWebViewClient extends WebViewClient {
                 connection.addRequestProperty("Pragma", "no-cache");
                 connection.addRequestProperty("Expires", "0");
                 connection.setRequestProperty("User-Agent", "YTPRO");
-                connection.setRequestProperty("Accept", "**");
+                connection.setRequestProperty("Accept", "*/*");
                 connection.setConnectTimeout(10000);
                 connection.setReadTimeout(10000);
                 
@@ -197,3 +197,4 @@ public class YTProWebViewClient extends WebViewClient {
 		}
 		super.onPageFinished(view, url);
 	}
+}
