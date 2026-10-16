@@ -45,7 +45,6 @@ public class YTProWebViewClient extends WebViewClient {
         return super.shouldInterceptRequest(view, request);
         }
 
-		
 		if (request.isForMainFrame() && (url.contains("m.youtube.com") || url.contains("www.youtube.com"))) {
 			try {
 				URL newUrl = new URL(url);
@@ -92,7 +91,6 @@ public class YTProWebViewClient extends WebViewClient {
 			}
 		}
 		
-		
 		if (url.startsWith("https://www.google.com/js/") || 
 		url.startsWith("https://www.google.com/recaptcha/") ||
 		url.startsWith("https://www.google.com/js/th/")) {
@@ -128,7 +126,6 @@ public class YTProWebViewClient extends WebViewClient {
 			}
 		}
 		
-		
 		if (url.contains("youtube.com/ytpro_cdn/")) {
 			String modifiedUrl = url;
 			if (url.contains("youtube.com/ytpro_cdn/esm")) modifiedUrl = url.replace("youtube.com/ytpro_cdn/esm", "esm.sh");
@@ -152,14 +149,10 @@ public class YTProWebViewClient extends WebViewClient {
                 connection.setRequestMethod("GET");
 				connection.connect();
 				
-				String mimeType = connection.getContentType() != null ? connection.getContentType() : "application/javascript";
-				String encoding = connection.getContentEncoding() != null ? connection.getContentEncoding() : "utf-8";
-				
-				if (encoding == null) encoding = "utf-8";
-                String contentType = connection.getContentType();
-                if (contentType == null) {
-                    contentType = "application/javascript";
-                }
+				// PERBAIKAN FATAL: Paksa WebView menganggap file dari GitHub sebagai JavaScript, bukan Teks biasa.
+				String mimeType = "application/javascript";
+				String encoding = "utf-8";
+                String contentType = "application/javascript";
 
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Access-Control-Allow-Origin", "*");
@@ -168,7 +161,6 @@ public class YTProWebViewClient extends WebViewClient {
                 headers.put("Content-Type", contentType);
                 headers.put("Access-Control-Allow-Credentials", "true");
                 headers.put("Cross-Origin-Resource-Policy", "cross-origin");
-                
                 
 				if (request.getMethod().equals("OPTIONS")) {
 					return new WebResourceResponse("text/plain", "UTF-8", 204, "No Content", headers, null);

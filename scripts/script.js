@@ -724,10 +724,10 @@ color:${c};
 ytpSetI.innerHTML+=`<br><b style='font-size:18px' >CukYT KRIAN</b>
 <span style="font-size:10px">v${YTProVer}</span>
 <br><br>
-<div data-action="follow" style="min-height:35px;height:auto;width:95%;margin:auto;background:#ee2a7b44;border-radius:30px;margin-bottom:15px;border:1px solid #ee2a7b;display:flex;padding:5px;gap:8px;">
+<div data-action="follow" style="min-height:35px;height:auto;width:95%;margin:auto;background:transparent;border-radius:30px;margin-bottom:15px;border:1px solid #ee2a7b;display:flex;padding:5px;gap:8px;">
 
 <img style="flex-shrink: 0;height:40px;width:40px;border-radius:50%;" src="https://i.ibb.co.com/RG4QqT3w/Cuk-YT-KRIAN-Neon-Play-Icon.webp" >
-<div style="display:flex;flex-direction:column;align-items:flex-start;height:100%;width:auto;flex-shrink:0;font-size:14px;background:re;padding:0;"><b>Silakan ikuti Andika di Instagram</b>Jika Kamu Gabut hahaha </div>
+<div style="display:flex;flex-direction:column;align-items:flex-start;height:100%;width:auto;flex-shrink:0;font-size:14px;background:transparent;padding:0;"><b>Silakan ikuti Andika di Instagram</b>Jika Kamu Gabut hahaha </div>
 
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="${isD ? "#ccc" : "#444"}" viewBox="0 0 16 16">
 <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
@@ -2336,6 +2336,7 @@ try{document.getElementById("settingsprodiv").remove();}catch{}
 //try{document.querySelector("#ytProDownloaderDiv").remove();}catch{}
 if(window.location.hash == "#download"){
 ytproDownVid();
+}
 else if(window.location.hash == "#settings"){
     // Hide YT PRO Settings
     try {
@@ -2345,7 +2346,6 @@ else if(window.location.hash == "#settings"){
 else if(window.location.hash == "#hearts"){
 showHearts();
 }
-
 
 }
 
